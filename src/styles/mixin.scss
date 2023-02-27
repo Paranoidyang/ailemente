@@ -1,16 +1,29 @@
-
-// bem
+// bem 是 css 的一种命名方式，如：
+// .block {}
+// .block__element{}
+// .block--modifier{}
 
 $namespace: 'el';
+$element-separator: '__';
+$modifier-separator: '--';
+$state-prefix: 'is-';
+
+$--header-padding: 0 20px !default;
+$--footer-padding: 0 20px !default;
+$--main-padding: 20px !default;
+
+// bem
 @mixin b($block) {
-  $B: $namespace + '-' + $block !global;
+  $B: $namespace + '-' + $block !global; // !global 改变局部变量作用范围
   .#{$B} {
-    @content;
+    @content; // 向 mixin 传递样式片段，类似 slot
   }
 }
 
-// 添加ben后缀啥的
+// add class
 @mixin when($state) {
+  // 当使用 & 选择器时，Sass 也会自动嵌套选择器，如果不想嵌套，可以使用 @at-root
+  // 在 SCSS 中嵌套，使用 @at-root 内联选择器模式，编译出来的 CSS 无任何嵌套，让代码更加的简单。
   @at-root {
     &.#{$state-prefix + $state} {
       @content;
