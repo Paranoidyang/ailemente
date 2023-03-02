@@ -35,7 +35,7 @@ const buttonSize = computed(()=>{
 </script>
 
 <style lang="scss">
-@import '../styles/mixin';
+@import '../../styles/mixin';
 @include b(button){
   display: inline-block;
   line-height: 1;
